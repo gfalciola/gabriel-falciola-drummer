@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gabriel Falciola - Baterista Profesional</title>
+    <title data-es="Gabriel Falciola - Baterista Profesional" data-en="Gabriel Falciola - Professional Drummer">Gabriel Falciola - Baterista Profesional</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
@@ -71,6 +71,8 @@
             border: 4px solid var(--accent-color);
             background: url('profile.jpg') center/cover;
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
         }
 
         h1 {
@@ -105,11 +107,74 @@
             background: var(--card-bg);
             transition: all 0.3s ease;
             text-decoration: none;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            aspect-ratio: 1 / 1;
         }
 
         .social-links a:hover {
             background: var(--accent-color);
             transform: translateY(-3px);
+        }
+
+        /* Language Toggle */
+        .language-toggle {
+            display: flex;
+            align-items: center;
+        }
+
+        .language-btn {
+            background: var(--card-bg);
+            color: var(--text-color);
+            border: 2px solid var(--accent-color);
+            padding: 8px 16px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+        }
+
+        .language-btn:hover {
+            background: var(--accent-color);
+            transform: translateY(-2px);
+        }
+
+        /* Scroll to Top Button */
+        .scroll-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--accent-color);
+            color: var(--text-color);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+        }
+
+        .scroll-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .scroll-to-top:hover {
+            background: #ff5252;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.4);
         }
 
         /* Navigation */
@@ -125,7 +190,16 @@
         .nav-container {
             display: flex;
             justify-content: center;
+            align-items: center;
             gap: 40px;
+            position: relative;
+        }
+
+        @media (min-width: 769px) {
+            .language-toggle {
+                position: absolute;
+                right: 0;
+            }
         }
 
         .nav-link {
@@ -168,6 +242,103 @@
         .about-text {
             font-size: 1.1rem;
             line-height: 1.8;
+        }
+
+        /* Carousel Styles */
+        .carousel-container {
+            position: relative;
+            max-width: 100%;
+            margin: 0 auto;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .carousel-slides {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .carousel-slide {
+            min-width: 100%;
+            position: relative;
+        }
+
+        .carousel-slide img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .carousel-slide img.fit-contain {
+            object-fit: contain;
+            background: var(--card-bg);
+        }
+
+        .carousel-slide img.fit-top {
+            object-fit: cover;
+            object-position: center top;
+        }
+
+        .carousel-slide img.fit-center-up {
+            object-fit: cover;
+            object-position: center 30%;
+        }
+
+        .carousel-navigation {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0,0,0,0.7);
+            color: white;
+            border: none;
+            padding: 15px 20px;
+            cursor: pointer;
+            font-size: 18px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+
+        .carousel-navigation:hover {
+            background: var(--accent-color);
+        }
+
+        .carousel-prev {
+            left: 15px;
+        }
+
+        .carousel-next {
+            right: 15px;
+        }
+
+        .carousel-indicators {
+            position: absolute;
+            bottom: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+            z-index: 10;
+        }
+
+        .carousel-indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.5);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .carousel-indicator.active {
+            background: var(--accent-color);
+            transform: scale(1.2);
+        }
+
+        .carousel-indicator:hover {
+            background: rgba(255,255,255,0.8);
         }
 
         .about-image {
@@ -262,7 +433,8 @@
             color: var(--accent-color);
         }
 
-        /* Samples Section */
+        /* 
+        // Samples Section
         .samples-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -292,6 +464,54 @@
             justify-content: center;
             margin-bottom: 10px;
             color: var(--text-secondary);
+        }
+        */
+
+        /* Press Section */
+        .press-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 50px;
+        }
+
+        .press-card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            transition: transform 0.3s ease;
+            border-left: 4px solid var(--accent-color);
+        }
+
+        .press-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .press-card .media-name {
+            color: var(--accent-color);
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+
+        .press-card .press-date {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+
+        .press-card h4 {
+            color: var(--text-color);
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+
+        .press-card .press-excerpt {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            font-style: italic;
         }
 
         /* Contact Section */
@@ -347,6 +567,18 @@
                 flex-direction: column;
                 gap: 10px;
             }
+
+            .language-toggle {
+                margin-top: 15px;
+            }
+
+            .scroll-to-top {
+                bottom: 20px;
+                right: 20px;
+                width: 45px;
+                height: 45px;
+                font-size: 1rem;
+            }
             
             .about-content {
                 grid-template-columns: 1fr;
@@ -359,6 +591,37 @@
             .video-grid {
                 grid-template-columns: 1fr;
             }
+            
+            .press-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            /* Carousel mobile adjustments */
+            .carousel-slide img {
+                height: 250px;
+            }
+            
+            .carousel-navigation {
+                padding: 10px 15px;
+                font-size: 16px;
+            }
+            
+            .carousel-prev {
+                left: 10px;
+            }
+            
+            .carousel-next {
+                right: 10px;
+            }
+            
+            .carousel-indicators {
+                bottom: 10px;
+            }
+            
+            .carousel-indicator {
+                width: 10px;
+                height: 10px;
+            }
         }
     </style>
 </head>
@@ -368,12 +631,13 @@
             <div class="hero-content">
                 <div class="profile-image"></div>
                 <h1>Gabriel Falciola</h1>
-                <p class="subtitle">Baterista Profesional | Compositor | Productor</p>
+                <p class="subtitle" data-es="Baterista Profesional | Compositor | Productor" data-en="Professional Drummer | Composer | Producer">Baterista Profesional | Compositor | Productor</p>
                 <div class="social-links">
-                    <a href="#" title="YouTube">🎥</a>
-                    <a href="#" title="Spotify">🎵</a>
-                    <a href="#" title="Instagram">📸</a>
-                    <a href="#" title="SoundCloud">🎧</a>
+                    <a href="https://www.instagram.com/gabrielfalciola/" title="Instagram" target="_blank">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                        </svg>
+                    </a>
                 </div>
             </div>
         </div>
@@ -382,30 +646,63 @@
     <nav>
         <div class="container">
             <div class="nav-container">
-                <a href="#about" class="nav-link">Sobre Mí</a>
-                <a href="#experience" class="nav-link">Trayectoria</a>
-                <a href="#discography" class="nav-link">Discografía</a>
-                <a href="#spotify-albums" class="nav-link">Spotify</a>
-                <a href="#videos" class="nav-link">Videos</a>
-                <a href="#samples" class="nav-link">Samples</a>
-                <a href="#contact" class="nav-link">Contacto</a>
+                <a href="#about" class="nav-link" data-es="Sobre Mí" data-en="About Me">Sobre Mí</a>
+                <a href="#experience" class="nav-link" data-es="Trayectoria" data-en="Experience">Trayectoria</a>
+                <a href="#spotify-albums" class="nav-link" data-es="Spotify" data-en="Spotify">Spotify</a>
+                <a href="#videos" class="nav-link" data-es="Videos" data-en="Videos">Videos</a>
+                <a href="#prensa" class="nav-link" data-es="Prensa" data-en="Press">Prensa</a>
+                <!-- <a href="#samples" class="nav-link">Samples</a> -->
+                <a href="#contact" class="nav-link" data-es="Contacto" data-en="Contact">Contacto</a>
+                <div class="language-toggle">
+                    <button class="language-btn" onclick="toggleLanguage()" id="languageBtn">EN</button>
+                </div>
             </div>
         </div>
     </nav>
 
+    <!-- Scroll to Top Button -->
+    <button class="scroll-to-top" onclick="scrollToTop()" title="Ir arriba" data-es-title="Ir arriba" data-en-title="Go to top">
+        ↑
+    </button>
+
     <section id="about">
         <div class="container">
-            <h2 class="section-title">Sobre Mí</h2>
+            <h2 class="section-title" data-es="Sobre Mí" data-en="About Me">Sobre Mí</h2>
             <div class="about-content">
                 <div class="about-text">
-                    <p>Con más de 30 años de experiencia en la música, he desarrollado mi carrera como baterista profesional desde 1992, participando en diversos proyectos musicales que van desde el grunge hasta el rock progresivo, jazz y música psicodélica.</p>
+                    <p data-es="Con más de 30 años de experiencia en la música, me he desarrollado como baterista desde 1992, participando en diversos proyectos artísticos que van desde el pop, rock, grunge hasta el rock progresivo, jazz y música psicodélica." data-en="With over 30 years of experience in music, I have been developing as a drummer since 1992, participating in diverse artistic projects ranging from pop, rock, grunge to progressive rock, jazz and psychedelic music.">Con más de 30 años de experiencia en la música, me he desarrollado como baterista desde 1992, participando en diversos proyectos artísticos que van desde el pop, rock, grunge hasta el rock progresivo, jazz y música psicodélica.</p>
                     
-                    <p>Mi formación incluye años de aprendizaje autodidacta (1992-1996), clases particulares con Rubén "Mosca" Bloise (reconocido por su trabajo con Horizonte, Botafogo y Bersuit Vergarabat) y la carrera de Músico Intérprete Profesional en la Escuela Popular de Música del Sindicato Argentino de Músicos.</p>
-                    
-                    <p>He sido parte de bandas emblemáticas como Caballo Espíritu, disparadora del movimiento grunge en Argentina, y Honduras, proyecto psicodélico con influencias de krautrock. Mi versatilidad me ha llevado a explorar desde el jazz hasta tributos a Pink Floyd, siempre manteniendo un enfoque técnico y creativo en cada interpretación.</p>
+                    <p data-es="He tenido el privilegio de acompañar músicos muy diversos, incluyendo colaboraciones históricas como la visita de Damo Suzuki en Buenos Aires. Esta experiencia me ha permitido desarrollar una gran flexibilidad y amplitud musical, adaptándome a diferentes estilos y contextos con un enfoque siempre técnico y creativo." data-en="I have had the privilege of accompanying very diverse musicians, including historic collaborations such as Damo Suzuki's visit to Buenos Aires. This experience has allowed me to develop great flexibility and musical breadth, adapting to different styles and contexts with an always technical and creative approach.">He tenido el privilegio de acompañar músicos muy diversos, incluyendo colaboraciones históricas como la visita de Damo Suzuki en Buenos Aires. Esta experiencia me ha permitido desarrollar una gran flexibilidad y amplitud musical, adaptándome a diferentes estilos y contextos con un enfoque siempre técnico y creativo.</p>
                 </div>
                 <div class="about-image">
-                    <img src="profile.jpg" alt="Gabriel Falciola tocando batería" style="width: 100%; height: 300px; object-fit: cover; background: var(--card-bg);">
+                    <div class="carousel-container">
+                        <div class="carousel-slides">
+                            <div class="carousel-slide"><img src="profile.jpg" alt="Gabriel Falciola - Foto principal"></div>
+                            <div class="carousel-slide"><img src="images/Bitácora en RAF (28).jpg" alt="Gabriel con Bitácora en RAF" class="fit-top"></div>
+                            <div class="carousel-slide"><img src="images/Bitácora en RAF (24).jpg" alt="Gabriel con Bitácora en RAF" class="fit-center-up"></div>
+                            <div class="carousel-slide"><img src="images/DSC_0023.jpg" alt="Gabriel tocando batería" class="fit-center-up"></div>
+                            <div class="carousel-slide"><img src="images/IMG-20211227-WA0052.jpg" alt="Gabriel Falciola"></div>
+                            <div class="carousel-slide"><img src="images/IMG-20220423-WA0048.jpg" alt="Gabriel en estudio"></div>
+                            <div class="carousel-slide"><img src="images/IMG-20220429-WA0040.jpg" alt="Gabriel Falciola"></div>
+                            <div class="carousel-slide"><img src="images/IMG_1800.jpeg" alt="Gabriel Falciola"></div>
+                            <div class="carousel-slide"><img src="images/IMG_1889.jpeg" alt="Gabriel tocando"></div>
+                            <div class="carousel-slide"><img src="images/_MG_8913.jpg" alt="Gabriel Falciola baterista"></div>
+                        </div>
+                        <button class="carousel-navigation carousel-prev">&lt;</button>
+                        <button class="carousel-navigation carousel-next">&gt;</button>
+                        <div class="carousel-indicators">
+                            <span class="carousel-indicator active"></span>
+                            <span class="carousel-indicator"></span>
+                            <span class="carousel-indicator"></span>
+                            <span class="carousel-indicator"></span>
+                            <span class="carousel-indicator"></span>
+                            <span class="carousel-indicator"></span>
+                            <span class="carousel-indicator"></span>
+                            <span class="carousel-indicator"></span>
+                            <span class="carousel-indicator"></span>
+                            <span class="carousel-indicator"></span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -413,112 +710,116 @@
 
     <section id="experience">
         <div class="container">
-            <h2 class="section-title">Trayectoria Musical</h2>
+            <h2 class="section-title" data-es="Trayectoria Musical" data-en="Musical Career">Trayectoria Musical</h2>
             
             <div class="experience-section">
-                <h3 style="color: var(--accent-color); margin-bottom: 30px; font-size: 1.5rem;">Formación</h3>
+                <h3 style="color: var(--accent-color); margin-bottom: 30px; font-size: 1.5rem;" data-es="Formación" data-en="Education">Formación</h3>
                 <div class="cards-grid">
                     <div class="card">
                         <h4>1992 - 1996</h4>
-                        <p><strong>Aprendizaje Autodidacta</strong></p>
-                        <p>Primeros años desarrollando técnica y estilo personal.</p>
+                        <p><strong data-es="Aprendizaje Autodidacta" data-en="Self-taught Learning">Aprendizaje Autodidacta</strong></p>
+                        <p data-es="Primeros años desarrollando técnica y estilo personal." data-en="Early years developing technique and personal style.">Primeros años desarrollando técnica y estilo personal.</p>
                     </div>
                     <div class="card">
                         <h4>1996 - 2000</h4>
-                        <p><strong>Clases Particulares</strong></p>
-                        <p>Con Rubén "Mosca" Bloise (Horizonte, Botafogo, Bersuit Vergarabat)</p>
+                        <p><strong data-es="Clases Particulares" data-en="Private Lessons">Clases Particulares</strong></p>
+                        <p data-es="Rubén &quot;Mosca&quot; Bloise" data-en="Rubén &quot;Mosca&quot; Bloise">Rubén &quot;Mosca&quot; Bloise</p>
+                        <p style="margin-top: 15px; font-size: 0.9rem; color: var(--text-secondary);" data-es="<strong>Sobre Rubén &quot;Mosca&quot; Bloise:</strong> Es un reconocido baterista argentino con una extensa trayectoria en el rock nacional. Ha participado en importantes bandas como Horizonte, Afrocandombe, Mestizo, y fue parte de Bersuit Vergarabat y Botafogo, contribuyendo significativamente al desarrollo del rock argentino." data-en="<strong>About Rubén &quot;Mosca&quot; Bloise:</strong> Renowned Argentine drummer with extensive experience in national rock. He has participated in important bands like Horizonte, Afrocandombe, Mestizo, and was part of Bersuit Vergarabat and Botafogo, contributing significantly to the development of Argentine rock.">
+                            <strong>Sobre Rubén &quot;Mosca&quot; Bloise:</strong> Es un reconocido baterista argentino con una extensa trayectoria en el rock nacional. Ha participado en importantes bandas como Horizonte, Afrocandombe, Mestizo, y fue parte de Bersuit Vergarabat y Botafogo, contribuyendo significativamente al desarrollo del rock argentino.
+                        </p>
                     </div>
                     <div class="card">
                         <h4>2001 - 2005</h4>
-                        <p><strong>Escuela Popular de Música</strong></p>
-                        <p>Carrera de Músico Intérprete Profesional - Sindicato Argentino de Músicos</p>
-                        <p>Clases con Marcelo Blanco</p>
-                        <a href="http://www.epm.edu/EPM.htm" class="card-link" target="_blank">Ver institución →</a>
+                        <p><strong data-es="Escuela Popular de Música" data-en="Popular Music School">Escuela Popular de Música</strong></p>
+                        <p data-es="Carrera de Músico Intérprete Profesional - Sindicato Argentino de Músicos" data-en="Professional Musician Interpreter Degree - Argentine Musicians Union">Carrera de Músico Intérprete Profesional - Sindicato Argentino de Músicos</p>
+                        <p data-es="Clases de batería con Marcelo Blanco" data-en="Drum lessons with Marcelo Blanco">Clases de batería con Marcelo Blanco</p>
+                        <a href="http://www.epm.edu/#!/-carreras-cursos/?ancla=interprete" class="card-link" target="_blank" data-es="Ver programa de la carrera →" data-en="See program details →">Ver programa de la carrera →</a>
                     </div>
                     <div class="card">
                         <h4>2004</h4>
-                        <p><strong>Ensamble de Jazz</strong></p>
-                        <p>Extracurricular EPM - Prof. Pablo Bobrowicky</p>
-                        <a href="http://www.epm.edu/Ens_Jazz.htm" class="card-link" target="_blank">Ver programa →</a>
+                        <p><strong data-es="Ensamble de Jazz" data-en="Jazz Ensemble">Ensamble de Jazz</strong></p>
+                        <p data-es="Extracurricular EPM - Prof. Pablo Bobrowicky" data-en="EPM Extracurricular - Prof. Pablo Bobrowicky">Extracurricular EPM - Prof. Pablo Bobrowicky</p>
+                        <p style="margin-top: 15px; font-size: 0.9rem; color: var(--text-secondary);" data-es="<strong>Sobre Pablo Bobrowicky:</strong> Reconocido guitarrista de jazz argentino con discografía internacional (Red Records Italia). Ha trabajado con Bobby Watson, Ed Simon, Eric Revis, Luis Agudo. Estudió con Jim Hall en New York. Conciertos en Argentina, Europa y EE.UU. Álbumes: "Southern Blue", "Baires Blue", "Where We Are", "New York Connection", "South Of The World"." data-en="<strong>About Pablo Bobrowicky:</strong> Renowned Argentine jazz guitarist with international discography (Red Records Italy). Has worked with Bobby Watson, Ed Simon, Eric Revis, Luis Agudo. Studied with Jim Hall in New York. Concerts in Argentina, Europe and US. Albums: "Southern Blue", "Baires Blue", "Where We Are", "New York Connection", "South Of The World".">
+                            <strong>Sobre Pablo Bobrowicky:</strong> Reconocido guitarrista de jazz argentino con discografía internacional (Red Records Italia). Ha trabajado con Bobby Watson, Ed Simon, Eric Revis, Luis Agudo. Estudió con Jim Hall en New York. Conciertos en Argentina, Europa y EE.UU. Álbumes: "Southern Blue", "Baires Blue", "Where We Are", "New York Connection", "South Of The World".
+                        </p>
+                        <a href="https://open.spotify.com/intl-es/artist/4F9StzHRkaZcQJETkDFbSa" class="card-link" target="_blank" data-es="Escuchar en Spotify →" data-en="Listen on Spotify →">Escuchar en Spotify →</a>
+                    </div>
+                    <div class="card">
+                        <h4>2016</h4>
+                        <p><strong data-es="Clases Particulares" data-en="Private Lessons">Clases Particulares</strong></p>
+                        <p data-es="Héctor &quot;Pomo&quot; Lorenzo" data-en="Héctor &quot;Pomo&quot; Lorenzo">Héctor "Pomo" Lorenzo</p>
+                        <p style="margin-top: 15px; font-size: 0.9rem; color: var(--text-secondary);" data-es="<strong>Sobre Pomo Lorenzo:</strong> Héctor Lorenzo Barros, más conocido como &quot;Pomo&quot;, es un músico, compositor y baterista argentino fundador del rock nacional. Integró bandas emblemáticas como Los Abuelos de la Nada, Pappo's Blues, Invisible y Spinetta Jade. También participó con Pedro Aznar y Fito Páez. Participó en 4 álbumes de los 100 mejores del rock argentino según Rolling Stone." data-en="<strong>About Pomo Lorenzo:</strong> Héctor Lorenzo Barros, better known as &quot;Pomo&quot;, is an Argentine musician, composer and drummer, founder of national rock. He was part of emblematic bands like Los Abuelos de la Nada, Pappo's Blues, Invisible and Spinetta Jade. He also participated with Pedro Aznar and Fito Páez. Participated in 4 albums of the top 100 Argentine rock albums according to Rolling Stone.">
+                            <strong>Sobre Pomo Lorenzo:</strong> Héctor Lorenzo Barros, más conocido como "Pomo", es un músico, compositor y baterista argentino fundador del rock nacional. Integró bandas emblemáticas como Los Abuelos de la Nada, Pappo's Blues, Invisible y Spinetta Jade. También participó con Pedro Aznar y Fito Páez. Participó en 4 álbumes de los 100 mejores del rock argentino según Rolling Stone.
+                        </p>
+                        <a href="https://es.wikipedia.org/wiki/Pomo_Lorenzo" class="card-link" target="_blank" data-es="Ver biografía →" data-en="See biography →">Ver biografía →</a>
                     </div>
                 </div>
             </div>
 
             <div class="experience-section" style="margin-top: 80px;">
-                <h3 style="color: var(--accent-color); margin-bottom: 30px; font-size: 1.5rem;">Grupos y Bandas</h3>
+                <h3 style="color: var(--accent-color); margin-bottom: 30px; font-size: 1.5rem;" data-es="Participación en proyectos" data-en="Project Participation">Participación en proyectos</h3>
                 <div class="cards-grid">
                     <div class="card">
                         <h4>1994 - 1998: Caballo Espíritu</h4>
-                        <p><strong>Grunge Argentino</strong></p>
-                        <p>Banda disparadora del movimiento grunge en Argentina. Influenciada por Pearl Jam y Alice in Chains. Presentaciones en el circuito under.</p>
+                        <p><strong data-es="Grunge Argentino" data-en="Argentine Grunge">Grunge Argentino</strong></p>
+                        <p data-es="Banda disparadora del movimiento grunge en Argentina. Influenciada por Pearl Jam y Alice in Chains. Presentaciones en el circuito under." data-en="Pioneering band of the grunge movement in Argentina. Influenced by Pearl Jam and Alice in Chains. Performances in the underground circuit.">Banda disparadora del movimiento grunge en Argentina. Influenciada por Pearl Jam y Alice in Chains. Presentaciones en el circuito under.</p>
                     </div>
                     <div class="card">
                         <h4>1998 - 2000: Postparto</h4>
-                        <p><strong>Rock con influencias de Spinetta</strong></p>
-                        <p>Presentaciones en Acatraz y otros venues del circuito under.</p>
+                        <p><strong data-es="Trío de rock con fuertes influencias de Spinetta" data-en="Rock trio with strong Spinetta influences">Trío de rock con fuertes influencias de Spinetta</strong></p>
+                        <p data-es="Presentaciones en Acatraz y otros venues del circuito under." data-en="Performances at Acatraz and other underground circuit venues.">Presentaciones en Acatraz y otros venues del circuito under.</p>
                     </div>
                     <div class="card">
                         <h4>1998 - 2000: Ariel Rojas y la Resultante</h4>
-                        <p><strong>Rock con influencias de Fito Paez y Charly</strong></p>
-                        <p>Presentaciones en el Bauen, The Cavern y otros lugares del under.</p>
-                        <a href="http://www.arielrojas.com" class="card-link" target="_blank">Ver sitio web →</a>
+                        <p><strong data-es="Rock con influencias de Fito Paez y Charly García" data-en="Rock with Fito Paez and Charly García influences">Rock con influencias de Fito Paez y Charly García</strong></p>
+                        <p data-es="Presentaciones en el Bauen, The Cavern y otros venues." data-en="Performances at Bauen, The Cavern and other venues.">Presentaciones en el Bauen, The Cavern y otros venues.</p>
                     </div>
                     <div class="card">
                         <h4>2000 - 2001: Con 0KM</h4>
-                        <p><strong>Pop</strong></p>
-                        <p>Giras y presentaciones en Corrientes y Misiones.</p>
+                        <p><strong data-es="Pop" data-en="Pop">Pop</strong></p>
+                        <p data-es="Giras y presentaciones en Corrientes y Misiones." data-en="Tours and performances in Corrientes and Misiones.">Giras y presentaciones en Corrientes y Misiones.</p>
+                        <a href="https://open.spotify.com/intl-es/artist/5Oz87vCGFNMCjEVOZDoUsk" class="card-link" target="_blank" data-es="Escuchar en Spotify →" data-en="Listen on Spotify →">Escuchar en Spotify →</a>
                     </div>
                     <div class="card">
                         <h4>2003 - 2004: Nave India</h4>
-                        <p><strong>Rock</strong></p>
-                        <p>Presentaciones en el circuito under porteño.</p>
-                        <a href="http://www.naveindia.com.ar" class="card-link" target="_blank">Ver sitio web →</a>
+                        <p><strong data-es="Rock" data-en="Rock">Rock</strong></p>
+                        <p data-es="Grabación del primer EP de la banda y presentaciones en el circuito under porteño." data-en="Recording of the band's first EP and performances in the Buenos Aires underground circuit.">Grabación del primer EP de la banda y presentaciones en el circuito under porteño.</p>
+                        <a href="https://rock.com.ar/artistas/nave-india/" class="card-link" target="_blank" data-es="Ver biografía →" data-en="See biography →">Ver biografía →</a>
                     </div>
                     <div class="card">
-                        <h4>2005 - Presente: Honduras</h4>
-                        <p><strong>Psicodélico / Krautrock</strong></p>
-                        <p>Influencias de Soft Machine, Robert Wyatt, Gong. Grabación de dos discos.</p>
-                        <a href="http://www.honduraslibregrupo.com.ar" class="card-link" target="_blank">Ver sitio web →</a>
+                        <h4>2005 - 2010: Honduras</h4>
+                        <p><strong data-es="Psicodélico / Krautrock" data-en="Psychedelic / Krautrock">Psicodélico / Krautrock</strong></p>
+                        <p data-es="Banda con influencias de Soft Machine, Robert Wyatt, Gong y King Crimson. Grabación de 4 discos, un simple y múltiples presentaciones en el circuito porteño. En 2009, Gabriel Falciola y Alejandro Leonelli forman parte de la banda que acompaña a Damo Suzuki en su segunda presentación en el ND/Ateneo, junto a Pez, Alan Courtis, Fernando Perales y Charly Zaragoza (de ÜL) y Hernán Espejo (de Compañero Asma)" data-en="Band influenced by Soft Machine, Robert Wyatt, Gong and King Crimson. Recording of 4 albums, one single and multiple performances in Buenos Aires circuit. In 2009, Gabriel Falciola and Alejandro Leonelli were part of the band that accompanied Damo Suzuki in his second presentation at ND/Ateneo, along with Pez, Alan Courtis, Fernando Perales and Charly Zaragoza (from ÜL) and Hernán Espejo (from Compañero Asma)">Banda con influencias de Soft Machine, Robert Wyatt, Gong y King Crimson. Grabación de 4 discos, un simple y múltiples presentaciones en el circuito porteño. En 2009, Gabriel Falciola y Alejandro Leonelli forman parte de la banda que acompaña a Damo Suzuki en su segunda presentación en el ND/Ateneo, junto a Pez, Alan Courtis, Fernando Perales y Charly Zaragoza (de ÜL) y Hernán Espejo (de Compañero Asma)</p>
+                        <a href="https://www.viajeroinmovil.com/es/banda/441" class="card-link" target="_blank" data-es="Ver biografía →" data-en="See biography →">Ver biografía →</a>
                     </div>
                     <div class="card">
-                        <h4>2006: Marania</h4>
-                        <p><strong>Rock Progresivo con influencias jazzeras</strong></p>
-                        <p>Exploración de sonidos complejos y técnicos.</p>
-                        <a href="http://www.maraniarock.blogspot.com/" class="card-link" target="_blank">Ver blog →</a>
+                        <h4>2006 - 2014: Marania</h4>
+                        <p><strong data-es="Progresivo instrumental" data-en="Instrumental Progressive">Progresivo instrumental</strong></p>
+                        <p data-es="Climas de progresivo clásico con la utilización de Minimoogs, Hammond y Mellotron y acercamientos a un jazz rock picante y vertiginoso con algunas reminiscencias a King Crimson, pero también con mucho planteo delicadamente armónico, toques folclóricos, acercamientos a la psicodelia o al jazz casi puro. Participó de la edición Festival La Plata Prog 2012." data-en="Classic progressive atmospheres using Minimoogs, Hammond and Mellotron and approaches to spicy and vertiginous jazz rock with some reminiscences of King Crimson, but also with much delicately harmonic approach, folk touches, approaches to psychedelia or almost pure jazz. Participated in La Plata Prog Festival 2012 edition.">Climas de progresivo clásico con la utilización de Minimoogs, Hammond y Mellotron y acercamientos a un jazz rock picante y vertiginoso con algunas reminiscencias a King Crimson, pero también con mucho planteo delicadamente armónico, toques folclóricos, acercamientos a la psicodelia o al jazz casi puro. Participó de la edición Festival La Plata Prog 2012.</p>
+                        <a href="https://www.rock-progresivo.com/marania-los-vaivenes-del-entorno-2014/2014/11/" class="card-link" target="_blank" data-es="Ver crítica del disco →" data-en="See album review →">Ver crítica del disco →</a>
                     </div>
                     <div class="card">
-                        <h4>2006: El Arca</h4>
-                        <p><strong>Tributo a clásicos</strong></p>
-                        <p>Repertorio de Pink Floyd, Génesis, Beatles. Presentaciones en Parque Cervecero de Quilmes y eventos privados.</p>
+                        <h4>2013: Squizojam - Abierto Cierra</h4>
+                        <p><strong data-es="Improvisación Colectiva" data-en="Collective Improvisation">Improvisación Colectiva</strong></p>
+                        <p data-es="Colaboración en disco de improvisación colectiva junto a Agustín Martire, Luis Conde, Nahuel Creche, Omar Grandoso, Oscar Jaureguiberry, Ramiro Larrain, Roberto Etcheverry y Sam Nacht. Grabado en Casa Frida Studio, Buenos Aires. Lanzamiento internacional: het balanseer (Gent, Bélgica) + Noseso Records (Argentina)." data-en="Collaboration in collective improvisation album with Agustín Martire, Luis Conde, Nahuel Creche, Omar Grandoso, Oscar Jaureguiberry, Ramiro Larrain, Roberto Etcheverry and Sam Nacht. Recorded at Casa Frida Studio, Buenos Aires. International release: het balanseer (Gent, Belgium) + Noseso Records (Argentina).">Colaboración en disco de improvisación colectiva junto a Agustín Martire, Luis Conde, Nahuel Creche, Omar Grandoso, Oscar Jaureguiberry, Ramiro Larrain, Roberto Etcheverry y Sam Nacht. Grabado en Casa Frida Studio, Buenos Aires. Lanzamiento internacional: het balanseer (Gent, Bélgica) + Noseso Records (Argentina).</p>
+                        <a href="https://www.discogs.com/release/5207181-Squizojam-Abierto-Cierra" class="card-link" target="_blank" data-es="Ver disco en Discogs →" data-en="See album on Discogs →">Ver disco en Discogs →</a>
                     </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="discography">
-        <div class="container">
-            <h2 class="section-title">Discografía</h2>
-            <div class="cards-grid">
-                <div class="card">
-                    <h3>Honduras - Dos Discos</h3>
-                    <p>Proyecto psicodélico/krautrock con influencias de Soft Machine, Robert Wyatt y Gong. Grabación de dos álbumes con sonidos experimentales y grooves complejos.</p>
-                    <a href="http://www.honduraslibregrupo.com.ar" class="card-link" target="_blank">Ver sitio web →</a>
-                </div>
-                <div class="card">
-                    <h3>Caballo Espíritu - Grunge Argentino</h3>
-                    <p>Banda disparadora del movimiento grunge en Argentina (1994-1998). Influencias de Pearl Jam y Alice in Chains. Grabaciones del circuito under porteño.</p>
-                    <a href="#" class="card-link">Próximamente en plataformas →</a>
-                </div>
-                <div class="card">
-                    <h3>Marania - Rock Progresivo</h3>
-                    <p>Proyecto de rock progresivo con influencias jazzeras (2006). Exploración de métricas complejas y sonidos técnicos.</p>
-                    <a href="http://www.maraniarock.blogspot.com/" class="card-link" target="_blank">Ver blog →</a>
-                </div>
-                <div class="card">
-                    <h3>Otras Colaboraciones</h3>
-                    <p>Grabaciones con Ariel Rojas y la Resultante, Postparto, Con 0KM, Nave India y otros proyectos del circuito independiente argentino.</p>
-                    <a href="#contact" class="card-link">Contactar para más información →</a>
+                    <div class="card">
+                        <h4>2006 - 2019: El Arca</h4>
+                        <p><strong data-es="Tributo a clásicos del rock nacional e internacional" data-en="Tribute to national and international rock classics">Tributo a clásicos del rock nacional e internacional</strong></p>
+                        <p data-es="Presentaciones en eventos privados y espacios como el Parque Cervecero de Quilmes, Acatraz, La Colorada, República de acá y Down Town Matías entre otros. Inicialmente como baterista y a partir del 2015 como bajista." data-en="Performances at private events and venues such as Parque Cervecero de Quilmes, Acatraz, La Colorada, República de acá and Down Town Matías among others. Initially as drummer and from 2015 as bassist.">Presentaciones en eventos privados y espacios como el Parque Cervecero de Quilmes, Acatraz, La Colorada, República de acá y Down Town Matías entre otros. Inicialmente como baterista y a partir del 2015 como bajista.</p>
+                    </div>
+                    <div class="card">
+                        <h4>2018 - <span data-es="Presente" data-en="Present">Presente</span>: Back to blue</h4>
+                        <p><strong data-es="Jazz Blues Pop & Rock" data-en="Jazz Blues Pop & Rock">Jazz Blues Pop & Rock</strong></p>
+                        <p data-es="Interpretamos clasicos versionadas en formato acústico. Presentaciones en bares y eventos privados. En este proyecto toco alternativamente el bajo o la batería." data-en="We perform classic songs arranged in acoustic format. Performances in bars and private events. In this project I play alternatively bass or drums.">Interpretamos clasicos versionadas en formato acústico. Presentaciones en bares y eventos privados. En este proyecto toco alternativamente el bajo o la batería.</p>
+                    </div>
+                    <div class="card">
+                        <h4>2016 - <span data-es="Presente" data-en="Present">Presente</span>: Bitácora</h4>
+                        <p><strong data-es="Rock Moderno" data-en="Modern Rock">Rock Moderno</strong></p>
+                        <p data-es="Bitácora está formado por músicos de trayectoria en distintos proyectos profesionales y del circuito emergente de Buenos Aires, quienes se unieron con la intención de rescatar la esencia del rock para proponer un sonido distintivo y actual. El proyecto comenzó en el año 2016 y al poco tiempo empezó a rodar, siendo invitados a compartir escenario con varios artistas consagrados en salas como Lucille, Rondeman Abasto y el Marquee, entre otras." data-en="Bitácora is formed by experienced musicians from various professional projects and the emerging Buenos Aires circuit, who came together with the intention of rescuing the essence of rock to propose a distinctive and current sound. The project began in 2016 and shortly after started rolling, being invited to share the stage with several established artists in venues like Lucille, Rondeman Abasto and the Marquee, among others.">Bitácora está formado por músicos de trayectoria en distintos proyectos profesionales y del circuito emergente de Buenos Aires, quienes se unieron con la intención de rescatar la esencia del rock para proponer un sonido distintivo y actual. El proyecto comenzó en el año 2016 y al poco tiempo empezó a rodar, siendo invitados a compartir escenario con varios artistas consagrados en salas como Lucille, Rondeman Abasto y el Marquee, entre otras.</p>
+                        <a href="https://linktr.ee/bitacora.rock" class="card-link" target="_blank" data-es="Ver sitio oficial →" data-en="See official site →">Ver sitio oficial →</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -527,9 +828,9 @@
 
     <section id="spotify-albums" style="background-color: var(--secondary-bg);">
         <div class="container">
-            <h2 class="section-title">Honduras - Álbumes en Spotify</h2>
-            <p style="text-align: center; margin-bottom: 50px; color: var(--text-secondary); font-size: 1.1rem;">
-                Discografía completa de Honduras (2006-2010) - Escucha directamente aquí
+            <h2 class="section-title" data-es="Álbumes en Spotify" data-en="Albums on Spotify">Álbumes en Spotify</h2>
+            <p style="text-align: center; margin-bottom: 50px; color: var(--text-secondary); font-size: 1.1rem;" data-es="Discografía de Honduras, Marania y Bitácora - Escucha directamente aquí" data-en="Discography of Honduras, Marania and Bitácora - Listen directly here">
+                Discografía de Honduras, Marania y Bitácora - Escucha directamente aquí
             </p>
             
             <div class="spotify-embeds-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap: 30px; margin-top: 50px;">
@@ -557,46 +858,215 @@
                     <h3 style="color: var(--accent-color); margin-bottom: 15px;">Célula Dormida (2010)</h3>
                     <iframe src="https://open.spotify.com/embed/album/3yaq8Zf3OnppjiBlvh1KIk?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" style="border-radius: 10px;"></iframe>
                 </div>
+                
+                <div class="spotify-embed-card" style="background: var(--card-bg); padding: 20px; border-radius: 15px; border: 1px solid var(--border-color); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+                    <h3 style="color: var(--accent-color); margin-bottom: 15px;">Los Vaivenes del Entorno (2014) - Marania</h3>
+                    <iframe src="https://open.spotify.com/embed/album/5TyGAWw1GOB8h7t9hLXHJe?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" style="border-radius: 10px;"></iframe>
+                </div>
+                
+                <div class="spotify-embed-card" style="background: var(--card-bg); padding: 20px; border-radius: 15px; border: 1px solid var(--border-color); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+                    <h3 style="color: var(--accent-color); margin-bottom: 15px;">Valle sin gloria (2022) - Bitácora</h3>
+                    <iframe src="https://open.spotify.com/embed/album/75T9y8c8tlZJcGi37UVo65?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" style="border-radius: 10px;"></iframe>
+                </div>
+                
+                <div class="spotify-embed-card" style="background: var(--card-bg); padding: 20px; border-radius: 15px; border: 1px solid var(--border-color); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+                    <h3 style="color: var(--accent-color); margin-bottom: 15px;">Utopías de un mundo real (2024) - Bitácora</h3>
+                    <iframe src="https://open.spotify.com/embed/album/5AQBzkd8IxK2qfUYxfsWTZ?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" style="border-radius: 10px;"></iframe>
+                </div>
             </div>
         </div>
     </section>
 
     <section id="videos">
         <div class="container">
-            <h2 class="section-title">Videos</h2>
+            <h2 class="section-title" data-es="Videos" data-en="Videos">Videos</h2>
             <div class="video-grid">
+
                 <div class="video-card">
-                    <iframe width="100%" height="200" src="https://www.youtube.com/embed/TjVKFg-oMqo" frameborder="0" allowfullscreen></iframe>
+                    <iframe width="100%" height="200" src="https://www.youtube.com/embed/QvPfy6F8kVY" frameborder="0" allowfullscreen></iframe>
                     <div class="video-info">
-                        <h4>Honduras - Proyecto Psicodélico</h4>
-                        <p>Video oficial de la banda Honduras, proyecto krautrock con influencias de Soft Machine y Robert Wyatt</p>
+                        <h4>Real – Bitácora (ft. Alambre González)</h4>
+                        <p data-es="Colaboración musical (2025)" data-en="Musical collaboration (2025)">Colaboración musical (2025)</p>
+                        <a href="https://www.youtube.com/watch?v=QvPfy6F8kVY" class="card-link" target="_blank" data-es="Ver en YouTube →" data-en="Watch on YouTube →">Ver en YouTube →</a>
                     </div>
                 </div>
                 <div class="video-card">
-                    <div class="video-placeholder">▶️</div>
+                    <iframe width="100%" height="200" src="https://www.youtube.com/embed/TRX2eaP7MUQ" frameborder="0" allowfullscreen></iframe>
                     <div class="video-info">
-                        <h4>Caballo Espíritu - Grunge Argentino</h4>
-                        <p>Performance de la banda disparadora del movimiento grunge en Argentina (1994-1998)</p>
+                        <h4>BITACORA | "En vivo en el Teatro San Rafael - 19/10/2024 - 12 Duende"</h4>
+                        <p data-es="Presentación en vivo en el Teatro San Rafael" data-en="Live performance at Teatro San Rafael">Presentación en vivo en el Teatro San Rafael</p>
+                        <a href="https://www.youtube.com/watch?v=TRX2eaP7MUQ" class="card-link" target="_blank" data-es="Ver en YouTube →" data-en="Watch on YouTube →">Ver en YouTube →</a>
                     </div>
                 </div>
                 <div class="video-card">
-                    <div class="video-placeholder">▶️</div>
+                    <iframe width="100%" height="200" src="https://www.youtube.com/embed/HGGDtcAiM3I" frameborder="0" allowfullscreen></iframe>
                     <div class="video-info">
-                        <h4>Ensamble de Jazz - EPM</h4>
-                        <p>Presentación con el ensamble de jazz de la Escuela Popular de Música</p>
+                        <h4>BITACORA | "En vivo en el Teatro San Rafael - 19/10/2024 - 05 Alma Cruel"</h4>
+                        <p data-es="Presentación en vivo en el Teatro San Rafael" data-en="Live performance at Teatro San Rafael">Presentación en vivo en el Teatro San Rafael</p>
+                        <a href="https://www.youtube.com/watch?v=HGGDtcAiM3I" class="card-link" target="_blank" data-es="Ver en YouTube →" data-en="Watch on YouTube →">Ver en YouTube →</a>
                     </div>
                 </div>
                 <div class="video-card">
-                    <div class="video-placeholder">▶️</div>
+                    <iframe width="100%" height="200" src="https://www.youtube.com/embed/lq_8Whle210" frameborder="0" allowfullscreen></iframe>
                     <div class="video-info">
-                        <h4>El Arca - Tributo Pink Floyd</h4>
-                        <p>Performance de clásicos de Pink Floyd, Génesis y Beatles</p>
+                        <h4>Marania en La Forja 19-07-2013</h4>
+                        <p data-es="Presentación en vivo del proyecto progresivo instrumental" data-en="Live performance of the instrumental progressive project">Presentación en vivo del proyecto progresivo instrumental</p>
+                        <a href="https://youtu.be/lq_8Whle210?si=Y1D7TobxcudR5wfR" class="card-link" target="_blank" data-es="Ver en YouTube →" data-en="Watch on YouTube →">Ver en YouTube →</a>
                     </div>
+                </div>
+
+                <div class="video-card">
+                    <iframe width="100%" height="200" src="https://www.youtube.com/embed/D7vxi1NiZKQ" frameborder="0" allowfullscreen></iframe>
+                    <div class="video-info">
+                        <h4>Marania (Sinapsis) - La Plata Prog 2012 - DIA 8</h4>
+                        <p data-es="Presentación en el Festival La Plata Prog" data-en="Performance at La Plata Prog Festival">Presentación en el Festival La Plata Prog</p>
+                        <a href="https://www.youtube.com/watch?v=D7vxi1NiZKQ&list=RDD7vxi1NiZKQ&start_radio=1" class="card-link" target="_blank" data-es="Ver en YouTube →" data-en="Watch on YouTube →">Ver en YouTube →</a>
+                    </div>
+                </div>
+                <div class="video-card">
+                    <iframe src="https://player.vimeo.com/video/458763655#t=57m" width="100%" height="200" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+                    <div class="video-info">
+                        <h4>Alter Sapukai! Damo Suzuki en Argentina (2011)</h4>
+                        <p data-es="Documental dirigido por Guillermo Ueno y Sergio Subero sobre la visita del exvocalista de Can a Argentina en 2010, explorando su proceso creativo y colaboración con músicos locales (incluyendo Honduras)" data-en="Documentary directed by Guillermo Ueno and Sergio Subero about the visit of Can's former vocalist to Argentina in 2010, exploring his creative process and collaboration with local musicians (including Honduras)">Documental dirigido por Guillermo Ueno y Sergio Subero sobre la visita del exvocalista de Can a Argentina en 2010, explorando su proceso creativo y colaboración con músicos locales (incluyendo Honduras)</p>
+                        <a href="https://vimeo.com/458763655" class="card-link" target="_blank" data-es="Ver en Vimeo →" data-en="Watch on Vimeo →">Ver en Vimeo →</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="prensa" style="background-color: var(--secondary-bg);">
+        <div class="container">
+            <h2 class="section-title" data-es="Prensa" data-en="Press">Prensa</h2>
+            <p style="text-align: center; margin-bottom: 50px; color: var(--text-secondary); font-size: 1.1rem;" data-es="Cobertura mediática y críticas de los proyectos musicales" data-en="Media coverage and reviews of musical projects">
+                Cobertura mediática y críticas de los proyectos musicales
+            </p>
+            
+            <div class="press-grid">
+                <!-- Entrevistas y Menciones Audiovisuales 2024 -->
+                <div class="press-card">
+                    <div class="media-name">FM En Tránsito 93.9</div>
+                    <div class="press-date">2024</div>
+                    <h4>BITACORA | Entrevista "La Patria de las Moscas"</h4>
+                    <p class="press-excerpt" data-es="&quot;Entrevista radial con Bitácora en FM En Tránsito sobre el proyecto y trayectoria musical&quot;" data-en="&quot;Radio interview with Bitácora on FM En Tránsito about the project and musical career&quot;">"Entrevista radial con Bitácora en FM En Tránsito sobre el proyecto y trayectoria musical"</p>
+                    <a href="https://www.youtube.com/watch?v=uzwxSJEnVYI" class="card-link" target="_blank" data-es="Ver entrevista →" data-en="Watch interview →">Ver entrevista →</a>
+                </div>
+                
+                <div class="press-card">
+                    <div class="media-name">Vorterix Mendoza</div>
+                    <div class="press-date">2024</div>
+                    <h4 data-es="Entrevista Vorterix Mendoza" data-en="Vorterix Mendoza Interview">Entrevista Vorterix Mendoza</h4>
+                    <p class="press-excerpt" data-es="&quot;Entrevista en Vorterix Mendoza sobre proyectos musicales (min. 68:26)&quot;" data-en="&quot;Interview at Vorterix Mendoza about musical projects (min. 68:26)&quot;">"Entrevista en Vorterix Mendoza sobre proyectos musicales (min. 68:26)"</p>
+                    <a href="https://www.youtube.com/watch?v=QQ-UVxFHobo&list=PLjOYTWBVdhgBiWIaAjsi00lq287tEymom&t=4106s" class="card-link" target="_blank" data-es="Ver entrevista →" data-en="Watch interview →">Ver entrevista →</a>
+                </div>
+                
+                <div class="press-card">
+                    <div class="media-name">YouTube Live</div>
+                    <div class="press-date">2024</div>
+                    <h4 data-es="Una Dosis de Rock Argentino con La Banda Bitácora" data-en="A Dose of Argentine Rock with Bitácora Band">Una Dosis de Rock Argentino con La Banda Bitácora</h4>
+                    <p class="press-excerpt" data-es="&quot;Programa live streaming especializado en rock argentino featuring Bitácora&quot;" data-en="&quot;Live streaming program specialized in Argentine rock featuring Bitácora&quot;">"Programa live streaming especializado en rock argentino featuring Bitácora"</p>
+                    <a href="https://www.youtube.com/live/bU-Q8Htrg60" class="card-link" target="_blank" data-es="Ver programa →" data-en="Watch program →">Ver programa →</a>
+                </div>
+                
+                <div class="press-card">
+                    <div class="media-name">Rock & Pop</div>
+                    <div class="press-date">2024</div>
+                    <h4>BITACORA en "El bombardeo del demo"</h4>
+                    <p class="press-excerpt" data-es="&quot;Participación de Bitácora en el programa especializado de Rock &amp; Pop&quot;" data-en="&quot;Bitácora's participation in Rock &amp; Pop's specialized program&quot;">"Participación de Bitácora en el programa especializado de Rock & Pop"</p>
+                    <a href="https://www.youtube.com/watch?v=OcTag3hthQk&list=PLjOYTWBVdhgBiWIaAjsi00lq287tEymom&index=5" class="card-link" target="_blank" data-es="Ver programa →" data-en="Watch program →">Ver programa →</a>
+                </div>
+                
+                <!-- Bitácora -->
+                <div class="press-card">
+                    <div class="media-name">La Nación</div>
+                    <div class="press-date">2022</div>
+                    <h4 data-es="Bitácora - Cartelera de Teatro" data-en="Bitácora - Theater Billboard">Bitácora - Cartelera de Teatro</h4>
+                    <p class="press-excerpt" data-es="&quot;Bitácora está formado por músicos de trayectoria... quienes se unieron con la intención de rescatar la esencia del rock y blues&quot;" data-en="&quot;Bitácora is formed by experienced musicians... who came together with the intention of rescuing the essence of rock and blues&quot;">"Bitácora está formado por músicos de trayectoria... quienes se unieron con la intención de rescatar la esencia del rock y blues"</p>
+                    <a href="https://www.lanacion.com.ar/cartelera-de-teatro/obra/bitacora-ob30818" class="card-link" target="_blank" data-es="Ver nota completa →" data-en="Read full article →">Ver nota completa →</a>
+                </div>
+                
+                <!-- Marania -->
+                <div class="press-card">
+                    <div class="media-name">Autopoietican</div>
+                    <div class="press-date">2014</div>
+                    <h4 data-es="Marania - Los Vaivenes Progresivos" data-en="Marania - Progressive Swings">Marania - Los Vaivenes Progresivos</h4>
+                    <p class="press-excerpt" data-es="&quot;Sólido cultor de una inquieta variante psicodélica del rock progresivo...&quot;" data-en="&quot;Solid cultivator of a restless psychedelic variant of progressive rock...&quot;">"Sólido cultor de una inquieta variante psicodélica del rock progresivo..."</p>
+                    <a href="https://autopoietican.blogspot.com/2014/11/los-vaivenes-progresivos-de-marania.html" class="card-link" target="_blank" data-es="Leer crítica completa →" data-en="Read full review →">Leer crítica completa →</a>
+                </div>
+                
+                <div class="press-card">
+                    <div class="media-name">Cabeza de Moog</div>
+                    <div class="press-date">2014</div>
+                    <h4 data-es="Marania - Los Vaivenes del Entorno" data-en="Marania - The Swings of the Environment">Marania - Los Vaivenes del Entorno</h4>
+                    <p class="press-excerpt" data-es="&quot;Crítica del álbum debut del trío progresivo argentino&quot;" data-en="&quot;Review of the debut album by the Argentine progressive trio&quot;">"Crítica del álbum debut del trío progresivo argentino"</p>
+                    <a href="https://cabezademoog.blogspot.com/2014/10/marania-los-vaivenes-del-entorno-2014.html" class="card-link" target="_blank" data-es="Leer reseña →" data-en="Read review →">Leer reseña →</a>
+                </div>
+                
+                <!-- Squizojam -->
+                <div class="press-card">
+                    <div class="media-name">Casa Mundus</div>
+                    <div class="press-date">2013</div>
+                    <h4>Squizojam - Abierto Cierra</h4>
+                    <p class="press-excerpt" data-es="&quot;Disco de improvisación colectiva con lanzamiento internacional&quot;" data-en="&quot;Collective improvisation album with international release&quot;">"Disco de improvisación colectiva con lanzamiento internacional"</p>
+                    <a href="https://casamundus.com.ar/hu/productos/squizojam-abierto-cierra-cd/" class="card-link" target="_blank" data-es="Ver producto →" data-en="See product →">Ver producto →</a>
+                </div>
+                
+                <!-- Honduras -->
+                <div class="press-card">
+                    <div class="media-name">Cabeza de Moog</div>
+                    <div class="press-date">2012</div>
+                    <h4 data-es="Honduras - La Única Posición es la Oposición" data-en="Honduras - The Only Position is Opposition">Honduras - La Única Posición es la Oposición</h4>
+                    <p class="press-excerpt" data-es="&quot;Crítica del segundo álbum del proyecto psicodélico&quot;" data-en="&quot;Review of the second album by the psychedelic project&quot;">"Crítica del segundo álbum del proyecto psicodélico"</p>
+                    <a href="https://cabezademoog.blogspot.com/2012/09/honduras-la-unica-posicion-es-la.html#more" class="card-link" target="_blank" data-es="Leer reseña →" data-en="Read review →">Leer reseña →</a>
+                </div>
+                
+                <div class="press-card">
+                    <div class="media-name">Autopoietican</div>
+                    <div class="press-date">2011</div>
+                    <h4 data-es="Honduras Libregrupo - Lúcida Célula" data-en="Honduras Libregrupo - Lucid Cell">Honduras Libregrupo - Lúcida Célula</h4>
+                    <p class="press-excerpt" data-es="&quot;Análisis del trabajo del grupo krautrock argentino&quot;" data-en="&quot;Analysis of the work by the Argentine krautrock group&quot;">"Análisis del trabajo del grupo krautrock argentino"</p>
+                    <a href="https://autopoietican.blogspot.com/2011/07/honduras-libregrupo-lucida-celula.html" class="card-link" target="_blank" data-es="Leer crítica →" data-en="Read review →">Leer crítica →</a>
+                </div>
+                
+                <!-- Artículo especial -->
+                <div class="press-card">
+                    <div class="media-name">La Nación</div>
+                    <div class="press-date">2010</div>
+                    <h4 data-es="El Monje Shaolin del Rock Volado" data-en="The Shaolin Monk of Blown Rock">El Monje Shaolin del Rock Volado</h4>
+                    <p class="press-excerpt" data-es="&quot;Artículo especial sobre música experimental argentina&quot;" data-en="&quot;Special article about Argentine experimental music&quot;">"Artículo especial sobre música experimental argentina"</p>
+                    <a href="https://www.lanacion.com.ar/espectaculos/musica/el-monje-shaolin-del-rock-volado-nid1135750/" class="card-link" target="_blank" data-es="Leer artículo →" data-en="Read article →">Leer artículo →</a>
+                </div>
+                
+                <div class="press-card">
+                    <div class="media-name">La Caja de Música</div>
+                    <div class="press-date">2008</div>
+                    <h4 data-es="Honduras - La Única Posición es la Oposición" data-en="Honduras - The Only Position is Opposition">Honduras - La Única Posición es la Oposición</h4>
+                    <p class="press-excerpt" data-es="&quot;Una de las obras más esplendorosas de la vanguardia sudamericana para este año 2008&quot;" data-en="&quot;One of the most splendorous works of the South American avant-garde for the year 2008&quot;">"Una de las obras más esplendorosas de la vanguardia sudamericana para este año 2008"</p>
+                    <a href="https://www.dlsi.ua.es/~inesta/LCDM/Discos/honduras_launicaposicion.html" class="card-link" target="_blank" data-es="Leer crítica completa →" data-en="Read full review →">Leer crítica completa →</a>
+                </div>
+                
+                <div class="press-card">
+                    <div class="media-name">Revista El Bondi</div>
+                    <div class="press-date">2008</div>
+                    <h4 data-es="Honduras - La Única Posición es la Oposición" data-en="Honduras - The Only Position is Opposition">Honduras - La Única Posición es la Oposición</h4>
+                    <p class="press-excerpt" data-es="&quot;Es recomendable una vuelta por la ciudad con estos 45 minutos de buena música... músicos que tocan y ensamblan muy bien&quot;" data-en="&quot;A ride around the city with these 45 minutes of good music is recommended... musicians who play and perform together very well&quot;">"Es recomendable una vuelta por la ciudad con estos 45 minutos de buena música... músicos que tocan y ensamblan muy bien"</p>
+                    <a href="https://elbondi.com/new-site/old-bondi/disco.php?id=3422" class="card-link" target="_blank" data-es="Leer reseña →" data-en="Read review →">Leer reseña →</a>
+                </div>
+                
+                <!-- Prog Archives -->
+                <div class="press-card">
+                    <div class="media-name">Prog Archives</div>
+                    <div class="press-date">2008</div>
+                    <h4 data-es="Honduras - Discografía en Prog Archives" data-en="Honduras - Discography in Prog Archives">Honduras - Discografía en Prog Archives</h4>
+                    <p class="press-excerpt" data-es="&quot;Base de datos internacional de rock progresivo&quot;" data-en="&quot;International progressive rock database&quot;">"Base de datos internacional de rock progresivo"</p>
+                    <a href="https://www.progarchives.com/album.asp?id=18491" class="card-link" target="_blank" data-es="Ver perfil →" data-en="See profile →">Ver perfil →</a>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- 
     <section id="samples">
         <div class="container">
             <h2 class="section-title">Samples de Batería</h2>
@@ -637,23 +1107,26 @@
             </div>
         </div>
     </section>
+    -->
 
     <section id="contact">
         <div class="container">
-            <h2 class="section-title">Contacto</h2>
+            <h2 class="section-title" data-es="Contacto" data-en="Contact">Contacto</h2>
             <div class="contact-content">
-                <p>¿Interesado en colaborar? Estoy disponible para grabaciones remotas, sesiones de estudio y proyectos musicales.</p>
+                <p data-es="¿Interesado en colaborar? Estoy disponible para grabaciones remotas, sesiones de estudio y proyectos musicales." data-en="Interested in collaborating? I'm available for remote recordings, studio sessions and musical projects.">¿Interesado en colaborar? Estoy disponible para grabaciones remotas, sesiones de estudio y proyectos musicales.</p>
                 <div class="contact-info">
                     <div class="contact-item">
-                        <h4>Email</h4>
+                        <h4 data-es="Email" data-en="Email">Email</h4>
                         <a href="mailto:gabriel.falciola@gmail.com">gabriel.falciola@gmail.com</a>
                     </div>
                     <div class="contact-item">
-                        <h4>Teléfono</h4>
-                        <a href="tel:+5491167275912">+54 9 11 6727-5912</a>
+                        <h4>WhatsApp</h4>
+                        <a href="https://wa.me/5491167275912?text=Hola%20Gabriel,%20me%20interesa%20contactarte%20para%20un%20proyecto%20musical" target="_blank">+54 9 11 6727-5912</a>
                     </div>
-                    <div class="contact-item">
-                        <h4>Ubicación</h4>
+                </div>
+                <div style="display: flex; justify-content: center; margin-top: 30px;">
+                    <div class="contact-item" style="max-width: 300px;">
+                        <h4 data-es="Ubicación" data-en="Location">Ubicación</h4>
                         <p>Buenos Aires, Argentina</p>
                     </div>
                 </div>
@@ -663,8 +1136,8 @@
 
     <footer>
         <div class="container">
-            <p>&copy; 2024 Gabriel Falciola. Todos los derechos reservados.</p>
-            <p>Baterista Profesional | Compositor | Productor</p>
+            <p data-es="&copy; 2025 Gabriel Falciola. Todos los derechos reservados." data-en="&copy; 2025 Gabriel Falciola. All rights reserved.">&copy; 2025 Gabriel Falciola. Todos los derechos reservados.</p>
+            <p data-es="Baterista Profesional | Compositor | Productor" data-en="Professional Drummer | Composer | Producer">Baterista Profesional | Compositor | Productor</p>
         </div>
     </footer>
 
@@ -679,11 +1152,13 @@
             });
         });
 
-        // Add active class to navigation links based on scroll position
+        // Add active class to navigation links based on scroll position & show/hide scroll to top button
         window.addEventListener('scroll', () => {
             const sections = document.querySelectorAll('section');
             const navLinks = document.querySelectorAll('.nav-link');
+            const scrollToTopBtn = document.querySelector('.scroll-to-top');
             
+            // Navigation active state
             let current = '';
             sections.forEach(section => {
                 const sectionTop = section.offsetTop;
@@ -699,6 +1174,134 @@
                     link.classList.add('active');
                 }
             });
+
+            // Show/hide scroll to top button
+            if (window.pageYOffset > 300) {
+                scrollToTopBtn.classList.add('visible');
+            } else {
+                scrollToTopBtn.classList.remove('visible');
+            }
+        });
+
+        // Carousel functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const carouselSlides = document.querySelector('.carousel-slides');
+            const slides = document.querySelectorAll('.carousel-slide');
+            const indicators = document.querySelectorAll('.carousel-indicator');
+            const prevBtn = document.querySelector('.carousel-prev');
+            const nextBtn = document.querySelector('.carousel-next');
+            
+            let currentSlide = 0;
+            const totalSlides = slides.length;
+            
+            function updateCarousel() {
+                const translateX = -currentSlide * 100;
+                carouselSlides.style.transform = `translateX(${translateX}%)`;
+                
+                // Update indicators
+                indicators.forEach((indicator, index) => {
+                    indicator.classList.toggle('active', index === currentSlide);
+                });
+            }
+            
+            function nextSlide() {
+                currentSlide = (currentSlide + 1) % totalSlides;
+                updateCarousel();
+            }
+            
+            function prevSlide() {
+                currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+                updateCarousel();
+            }
+            
+            function goToSlide(index) {
+                currentSlide = index;
+                updateCarousel();
+            }
+            
+            // Event listeners
+            nextBtn.addEventListener('click', nextSlide);
+            prevBtn.addEventListener('click', prevSlide);
+            
+            indicators.forEach((indicator, index) => {
+                indicator.addEventListener('click', () => goToSlide(index));
+            });
+            
+            // Auto-play (opcional, se puede pausar al hacer hover)
+            let autoplayInterval = setInterval(nextSlide, 4000);
+            
+            const carouselContainer = document.querySelector('.carousel-container');
+            carouselContainer.addEventListener('mouseenter', () => {
+                clearInterval(autoplayInterval);
+            });
+            
+            carouselContainer.addEventListener('mouseleave', () => {
+                autoplayInterval = setInterval(nextSlide, 4000);
+            });
+            
+            // Keyboard navigation
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowLeft') prevSlide();
+                if (e.key === 'ArrowRight') nextSlide();
+            });
+        });
+
+        // Language Toggle Functionality
+        let currentLanguage = 'es'; // Default language
+
+        function toggleLanguage() {
+            currentLanguage = currentLanguage === 'es' ? 'en' : 'es';
+            const languageBtn = document.getElementById('languageBtn');
+            languageBtn.textContent = currentLanguage === 'es' ? 'EN' : 'ES';
+            
+            // Update document lang attribute
+            document.documentElement.lang = currentLanguage;
+            
+            // Update all elements with data attributes
+            const elementsWithTranslation = document.querySelectorAll('[data-es], [data-en]');
+            elementsWithTranslation.forEach(element => {
+                const translation = element.getAttribute('data-' + currentLanguage);
+                if (translation) {
+                    if (element.tagName === 'TITLE') {
+                        document.title = translation;
+                    } else {
+                        element.innerHTML = translation;
+                    }
+                }
+            });
+
+            // Update WhatsApp link based on language
+            const whatsappLink = document.querySelector('a[href*="wa.me"]');
+            if (whatsappLink) {
+                const baseUrl = 'https://wa.me/5491167275912?text=';
+                const messages = {
+                    es: 'Hola%20Gabriel,%20me%20interesa%20contactarte%20para%20un%20proyecto%20musical',
+                    en: 'Hello%20Gabriel,%20I%20am%20interested%20in%20contacting%20you%20for%20a%20musical%20project'
+                };
+                whatsappLink.href = baseUrl + messages[currentLanguage];
+            }
+
+            // Update scroll to top button title
+            const scrollToTopBtn = document.querySelector('.scroll-to-top');
+            if (scrollToTopBtn) {
+                const titleAttribute = currentLanguage === 'es' ? 'data-es-title' : 'data-en-title';
+                scrollToTopBtn.title = scrollToTopBtn.getAttribute(titleAttribute);
+            }
+        }
+
+        // Scroll to Top Functionality
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // Initialize language on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set initial language button text
+            const languageBtn = document.getElementById('languageBtn');
+            languageBtn.textContent = 'EN';
         });
     </script>
 </body>
